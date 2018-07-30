@@ -1,6 +1,8 @@
 package com.chasel.girl.service;
 
 import com.chasel.girl.domain.Girl;
+import com.chasel.girl.enums.ResultEnum;
+import com.chasel.girl.exception.StatusCodeRuntimeException;
 import com.chasel.girl.repository.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,12 +35,14 @@ public class GirlService {
         if (girl != null) {
             Integer age = girl.getAge();
             if (age < 10) {
-                throw new RuntimeException("你可能还在上小学");
+                throw new StatusCodeRuntimeException(ResultEnum.PRIMARY_SCHOOL);
             } else if (age > 10 && age < 16) {
-                throw new RuntimeException("你可能还在上初中");
+                throw new StatusCodeRuntimeException(ResultEnum.JUNIOR_HIGH_SCHOOL);
             }
-
-//            如果>16岁，加钱
         }
+    }
+
+    public Girl findOne(Integer id) {
+        return girlRepository.findById(id).get();
     }
 }

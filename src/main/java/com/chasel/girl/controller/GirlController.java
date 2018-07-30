@@ -34,7 +34,7 @@ public class GirlController {
     public Result<Girl> girlAdd(@Valid Girl girl, BindingResult bindingResult) {
         Result result = new Result();
         if (bindingResult.hasErrors()) {
-            return ResultUtil.fail(0, bindingResult.getFieldError().getDefaultMessage());
+            return null;
         }
         return ResultUtil.success(girlRepository.save(girl));
     }

@@ -14,6 +14,7 @@ public class ResultUtil {
         result.setData(object);
         return result;
     }
+
     public static Result success() {
         return success(null);
     }
